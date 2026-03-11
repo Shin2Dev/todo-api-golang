@@ -2,22 +2,24 @@
 package main
 
 // IMPORT GIN FRAMEWORK (TEST)
-import "github.com/gin-gonic/gin"
 
+import (
+	"todo-api-golang/database"
+	"todo-api-golang/routes"
+
+	"github.com/gin-gonic/gin"
+)
+
+// Menyimpan variabel untuk menyimpan data todo sementara (NANTI PAKAI DATABASE)
 // FUNGSI MAIN
 func main() {
 
 	// membuat router server
 	router := gin.Default()
 
-	// endpoint pertama
-	router.GET("/ping", func(c *gin.Context) {
+	database.ConnectDatabase()
 
-		c.JSON(200, gin.H{
-			"message": "server berjalan",
-		})
-
-	})
+	routes.SetupTodoRoutes(router)
 
 	// menjalankan server di port 8080
 	router.Run(":8080")
