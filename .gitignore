@@ -1,2 +1,5 @@
 backup/
+tmp/
+bin/
+build/
 .env
